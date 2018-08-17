@@ -1,0 +1,2 @@
+module ReportIncidentsHelper
+end

@@ -1,0 +1,2 @@
+class IncidentObserver < ApplicationRecord
+end

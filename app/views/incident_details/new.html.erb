@@ -1,0 +1,83 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<div class="container">  
+  <%= nested_form_for (@incident),html: {id: "contact"} do |f|%>
+    <h3>Lincoln High School</h3>
+    <h4>Incident Reporting Page</h4>
+    <h4>Describe Issue/Incident</h4>
+    <h4>Incident Type</h4>
+    <fieldset>
+      <%#= f.select :incident_id, incident_types %>
+      <%= select_tag :incident_types, options_for_select(incident_types), {multiple: true, id: "incident_type", placeholder: "Type", tabindex: "1"}%></br>
+    </fieldset>
+    <h4>Description</h4>
+    <fieldset>      
+      <%= f.text_area :description, tabindex: "5", placeholder: "Write something here..." %> 
+    </fieldset>
+    <h4>Location</h4>
+    <fieldset>   
+      <%= f.text_field :location, placeholder: "Location" %>
+    </fieldset>
+
+    <h4>Incident Date</h4>
+    <fieldset>   
+      <%= f.text_field :incident_date, placeholder: "Incident Date" %>
+    </fieldset>
+    
+    <h4>Reporter Details</h4>
+    <fieldset>   
+      <%= f.text_field :reporter_name, placeholder: "Name" %>
+    </fieldset>
+    <fieldset>   
+      <%= f.email_field :reporter_email, placeholder: "Email" %>
+    </fieldset>
+    <fieldset>   
+      <%= f.text_field :reporter_phone, placeholder: "Phone" %>
+    </fieldset>
+    <fieldset>   
+      <%= f.text_field :role, placeholder: "Role" %>
+    </fieldset>
+    <!-- </table> -->
+    <p><%= f.link_to_add "Add Involved People", :involved_people, class: "btn btn-primary" %></p>
+    <!-- <button type="button" class="btn btn-primary">Add Photo</button> -->
+    <h4>Incident Images</h4>
+    <!-- <table id="tasks"> -->
+      <%= f.fields_for :images do |a| %>
+        <tr class="fields">
+          <td><%= a.file_field :file %></td>
+          <td><%= a.link_to_remove "Remove" %></td>
+        </tr>
+      <% end %>
+    <!-- </table> -->
+    <p><%= f.link_to_add "Add a Photo", :images, class: "btn btn-primary" %></p>
+
+    <h4>Involved People</h4>
+    <!-- <table id="tasks"> -->
+      <%= f.fields_for :involved_people do |a| %>
+        <tr class="fields">
+          <td><%= a.text_field :name, placeholder: "Name" %></td></br>
+          <td><%= a.text_field :email, placeholder: "Email" %></td></br>
+          <td><%= a.text_field :phone, placeholder: "Phone" %></td>
+          <td><%= a.link_to_remove "Remove" %></td>
+        </tr>
+      <% end %>
+    <!-- </table> -->
+    <p><%= f.link_to_add "Add Involved People", :involved_people, class: "btn btn-primary" %></p>
+
+    <h4>Incident Observer</h4>
+    <!-- <table id="tasks"> -->
+      <%= f.fields_for :incident_observers do |a| %>
+        <tr class="fields">
+          <td><%= a.text_field :name, placeholder: "Name" %></td></br>
+          <td><%= a.text_field :email, placeholder: "Email" %></td></br>
+          <td><%= a.text_field :phone, placeholder: "Phone" %></td>
+          <td><%= a.link_to_remove "Remove" %></td>
+        </tr>
+      <% end %>
+    <!-- </table> -->
+    <p><%= f.link_to_add "Add Incident Obsever", :incident_observers, class: "btn btn-primary" %></p>
+   
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    <!-- <p class="copyright"><a href="/" target="_blank" >Submit Incident</a></p> -->
+  <%end%>
+</div>

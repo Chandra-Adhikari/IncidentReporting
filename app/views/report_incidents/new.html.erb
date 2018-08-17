@@ -1,0 +1,23 @@
+<div class="container">  
+  <%= nested_form_for (@report),html: {id: "contact"} do |f|%>
+    <h3>Lincoln High School</h3>
+    <h4>Incident Reporting Page</h4>
+    <h4>Describe Issue/Incident</h4>
+    <%= f.text_area :incident, tabindex: "5", placeholder: "Write something here..." %>    
+    
+    <!-- <button type="button" class="btn btn-primary">Add Photo</button> -->
+    <table id="tasks">
+      <%= f.fields_for :images do |a| %>
+        <tr class="fields">
+          <td><%= a.file_field :file %></td>
+          <td><%= a.link_to_remove "Remove" %></td>
+        </tr>
+      <% end %>
+    </table>
+    <p><%= f.link_to_add "Add a Photo", :images, class: "btn btn-primary" %></p>
+   
+    <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    
+    <p class="copyright"><a href="/incident_details/new" target="_blank" >Submit Detailed Report</a></p>
+  <%end%>
+</div>

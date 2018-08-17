@@ -1,0 +1,2 @@
+class InvolvedPerson < ApplicationRecord
+end
